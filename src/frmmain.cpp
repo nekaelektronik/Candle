@@ -633,6 +633,7 @@ void frmMain::updateControlsState() {
     ui->cboCommand->setEnabled(portOpened && (!ui->chkKeyboardControl->isChecked()));
     ui->cmdCommandSend->setEnabled(portOpened);
 //    ui->widgetFeed->setEnabled(!m_transferringFile);
+    ui->actServiceConfig->setEnabled(portOpened);
 
     ui->chkTestMode->setEnabled(portOpened && !m_processingFile);
     ui->cmdHome->setEnabled(!m_processingFile);
