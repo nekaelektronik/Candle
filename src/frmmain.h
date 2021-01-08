@@ -39,6 +39,7 @@
 
 #include "frmsettings.h"
 #include "frmabout.h"
+#include "frmconfig.h"
 
 #ifdef WINDOWS
     #include <QtWinExtras/QtWinExtras>
@@ -113,6 +114,7 @@ private slots:
     void on_cmdFileSend_clicked();
     void onTableCellChanged(QModelIndex i1, QModelIndex i2);
     void on_actServiceSettings_triggered();
+    void on_actServiceConfig_triggered();
     void on_actFileOpen_triggered();
     void on_cmdCommandSend_clicked();
     void on_cmdHome_clicked();
@@ -235,6 +237,7 @@ private:
 
     frmSettings *m_settings;
     frmAbout m_frmAbout;
+    frmConfig m_frmConfig;
 
     QString m_settingsFileName;
     QString m_programFileName;

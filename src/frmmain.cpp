@@ -2694,6 +2694,11 @@ void frmMain::on_actAbout_triggered()
     m_frmAbout.exec();
 }
 
+void frmMain::on_actServiceConfig_triggered()
+{
+    m_frmConfig.exec();
+}
+
 bool frmMain::dataIsEnd(QString data) {
     QStringList ends;
 

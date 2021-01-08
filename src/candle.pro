@@ -66,7 +66,8 @@ SOURCES += main.cpp\
     widgets/slider.cpp \
     widgets/sliderbox.cpp \
     drawers/selectiondrawer.cpp \
-    widgets/comboboxkey.cpp
+    widgets/comboboxkey.cpp \
+    frmconfig.cpp
 
 HEADERS  += frmmain.h \
     frmsettings.h \
@@ -98,12 +99,14 @@ HEADERS  += frmmain.h \
     widgets/slider.h \
     widgets/sliderbox.h \
     drawers/selectiondrawer.h \
-    widgets/comboboxkey.h
+    widgets/comboboxkey.h \
+    frmconfig.h
 
 FORMS    += frmmain.ui \
     frmsettings.ui \
     frmabout.ui \
-    widgets/sliderbox.ui
+    widgets/sliderbox.ui \
+    frmconfig.ui
 
 DEFINES += _USE_MATH_DEFINES
 
