@@ -256,6 +256,8 @@ private:
     QStringList m_statusBackColors;
     QStringList m_statusForeColors;
 
+    QList<QString> m_configCommands;
+
 #ifdef WINDOWS
     QWinTaskbarButton *m_taskBarButton;
     QWinTaskbarProgress *m_taskBarProgress;

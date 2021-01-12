@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>411</width>
+    <height>369</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,41 +20,162 @@
       <bool>false</bool>
      </property>
      <property name="title">
-      <string>Step Configuration</string>
+      <string>Travel Resolution (step/mm)</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLabel" name="xStepLabel">
+       <widget class="QLabel" name="labelXStep">
         <property name="text">
          <string>X</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="xStepLine"/>
+       <widget class="QLineEdit" name="txtXStep"/>
       </item>
       <item>
-       <widget class="QLabel" name="yStepLabel">
+       <widget class="QLabel" name="labelYStep">
         <property name="text">
          <string>Y</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="yStepLine"/>
+       <widget class="QLineEdit" name="txtYStep"/>
       </item>
       <item>
-       <widget class="QLabel" name="zStepLabel">
+       <widget class="QLabel" name="labelZStep">
         <property name="text">
          <string>Z</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="zStepLine"/>
+       <widget class="QLineEdit" name="txtZStep"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="grpRate">
+     <property name="title">
+      <string>Maximum Rate (mm/min)</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="labelXRate">
+        <property name="text">
+         <string>X</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtXRate">
+        <property name="dragEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelYRate">
+        <property name="text">
+         <string>Y</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtYRate"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelZRate">
+        <property name="text">
+         <string>Z</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtZRate"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="grpAccel">
+     <property name="title">
+      <string>Acceleration (mm/sec^2)</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="labelXAccel">
+        <property name="text">
+         <string>X</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtXAccel"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelYAccel">
+        <property name="text">
+         <string>Y</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtYAccel"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelZAccel">
+        <property name="text">
+         <string>Z</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtZAccel"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="grpMaxTrav">
+     <property name="title">
+      <string>Maximum Travel (mm)</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="labelXMaxTrav">
+        <property name="text">
+         <string>X</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtXMaxTrav"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelYMaxTrav">
+        <property name="text">
+         <string>Y</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtYMaxTrav"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelZMaxTrav">
+        <property name="text">
+         <string>Z</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtZMaxTrav"/>
       </item>
      </layout>
     </widget>

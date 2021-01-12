@@ -32,6 +32,7 @@
 #include <QAction>
 #include <QLayout>
 #include <QMimeData>
+#include <QThread>
 #include "frmmain.h"
 #include "ui_frmmain.h"
 
@@ -745,7 +746,7 @@ void frmMain::sendCommand(QString command, int tableIndex, bool showInConsole)
 
     // Commands queue
     if ((bufferLength() + command.length() + 1) > BUFFERLENGTH) {
-//        qDebug() << "queue:" << command;
+        qDebug() << "queue:" << command;
 
         CommandQueue cq;
 
@@ -789,6 +790,7 @@ void frmMain::sendCommand(QString command, int tableIndex, bool showInConsole)
     }
 
     m_serialPort.write((command + "\r").toLatin1());
+    qDebug() << "Sent: " << command;
 }
 
 void frmMain::grblReset()
@@ -839,7 +841,13 @@ int frmMain::bufferLength()
 void frmMain::onSerialPortReadyRead()
 {
     while (m_serialPort.canReadLine()) {
+        if(!m_configCommands.isEmpty()){
+            qDebug() << m_configCommands[0];
+            sendCommand(m_configCommands.takeFirst(), -1, true);
+
+        }
         QString data = m_serialPort.readLine().trimmed();
+        qDebug() << "Get: " << data;
 
         // Filter prereset responses
         if (m_reseting) {
@@ -1393,6 +1401,7 @@ void frmMain::onTimerConnection()
         if (m_updateParserStatus) {
             m_updateParserStatus = false;
             sendCommand("$G", -3, false);
+            qDebug() << "On Timer Connection";
         }
     }
 }
@@ -2697,7 +2706,18 @@ void frmMain::on_actAbout_triggered()
 
 void frmMain::on_actServiceConfig_triggered()
 {
-    m_frmConfig.exec();
+    if(m_frmConfig.exec()){
+        qDebug() << "Accept";
+        QString x_step_command = QString("$100=%1").arg(m_frmConfig.getXStep());
+        m_configCommands.append(x_step_command);
+        QString y_step_command = QString("$101=%1").arg(m_frmConfig.getYStep());
+        m_configCommands.append(y_step_command);
+        QString z_step_command = QString("$102=%1").arg(m_frmConfig.getZStep());
+        m_configCommands.append(z_step_command);
+    }
+    else{
+        qDebug() << "Reject";
+    }
 }
 
 bool frmMain::dataIsEnd(QString data) {
