@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
-    <height>369</height>
+    <width>562</width>
+    <height>529</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,169 +15,694 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="GroupBox" name="grpSteps">
-     <property name="autoFillBackground">
-      <bool>false</bool>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
-     <property name="title">
-      <string>Travel Resolution (step/mm)</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="labelXStep">
-        <property name="text">
-         <string>X</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtXStep"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelYStep">
-        <property name="text">
-         <string>Y</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtYStep"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelZStep">
-        <property name="text">
-         <string>Z</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtZStep"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="grpRate">
-     <property name="title">
-      <string>Maximum Rate (mm/min)</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="labelXRate">
-        <property name="text">
-         <string>X</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtXRate">
-        <property name="dragEnabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelYRate">
-        <property name="text">
-         <string>Y</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtYRate"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelZRate">
-        <property name="text">
-         <string>Z</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtZRate"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="grpAccel">
-     <property name="title">
-      <string>Acceleration (mm/sec^2)</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="labelXAccel">
-        <property name="text">
-         <string>X</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtXAccel"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelYAccel">
-        <property name="text">
-         <string>Y</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtYAccel"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelZAccel">
-        <property name="text">
-         <string>Z</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtZAccel"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="grpMaxTrav">
-     <property name="title">
-      <string>Maximum Travel (mm)</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QLabel" name="labelXMaxTrav">
-        <property name="text">
-         <string>X</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtXMaxTrav"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelYMaxTrav">
-        <property name="text">
-         <string>Y</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtYMaxTrav"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelZMaxTrav">
-        <property name="text">
-         <string>Z</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtZMaxTrav"/>
-      </item>
-     </layout>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-663</y>
+        <width>528</width>
+        <height>1141</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="GroupBox" name="grpSteps">
+         <property name="toolTip">
+          <string>Travel resolution in steps per millimeter</string>
+         </property>
+         <property name="toolTipDuration">
+          <number>0</number>
+         </property>
+         <property name="whatsThis">
+          <string/>
+         </property>
+         <property name="accessibleDescription">
+          <string/>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="title">
+          <string>Travel Resolution (step/mm)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="labelXStep">
+            <property name="text">
+             <string>X</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtXStep"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelYStep">
+            <property name="text">
+             <string>Y</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtYStep"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelZStep">
+            <property name="text">
+             <string>Z</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtZStep"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpRate">
+         <property name="toolTip">
+          <string>Maximum rate. Used as G0 rapid rate.</string>
+         </property>
+         <property name="toolTipDuration">
+          <number>0</number>
+         </property>
+         <property name="title">
+          <string>Maximum Rate (mm/min)</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="labelXRate">
+            <property name="text">
+             <string>X</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtXRate">
+            <property name="dragEnabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelYRate">
+            <property name="text">
+             <string>Y</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtYRate"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelZRate">
+            <property name="text">
+             <string>Z</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtZRate"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpAccel">
+         <property name="toolTip">
+          <string>Used for motion planning to not exceed motor torque and lose steps.</string>
+         </property>
+         <property name="toolTipDuration">
+          <number>0</number>
+         </property>
+         <property name="title">
+          <string>Acceleration (mm/sec^2)</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="labelXAccel">
+            <property name="text">
+             <string>X</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtXAccel"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelYAccel">
+            <property name="text">
+             <string>Y</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtYAccel"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelZAccel">
+            <property name="text">
+             <string>Z</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtZAccel"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpMaxTrav">
+         <property name="toolTip">
+          <string>Maximum travel distance from homing switch. Determines valid machine space for soft-limits and homing search distances.</string>
+         </property>
+         <property name="title">
+          <string>Maximum Travel (mm)</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="labelXMaxTrav">
+            <property name="text">
+             <string>X</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtXMaxTrav"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelYMaxTrav">
+            <property name="text">
+             <string>Y</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtYMaxTrav"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelZMaxTrav">
+            <property name="text">
+             <string>Z</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtZMaxTrav"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpHoming">
+         <property name="title">
+          <string>Homing</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelFeedRate">
+            <property name="toolTip">
+             <string>(mm/min) Feed rate to slowly engage limit switch to determine its location accurately.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Locate feed rate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QLabel" name="labelPullOff">
+            <property name="toolTip">
+             <string>(mm) Retract distance after triggering switch to disengage it. Homing will fail if switch isn't cleared.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Switch pull-off distance</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelDebounce">
+            <property name="toolTip">
+             <string>(ms) Sets a short delay between phases of homing cycle to let a switch debounce.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Switch debounce delay</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="5">
+           <widget class="QLineEdit" name="txtSearchSeek"/>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="txtSwitchDebounce"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="txtLocateFeed"/>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="labelSeekRate">
+            <property name="toolTip">
+             <string>(mm/min) Seek rate to quickly find the limit switch before the slower locating phase.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Search seek rate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="5">
+           <widget class="QLineEdit" name="txtSwitchPullOff"/>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QCheckBox" name="cbHomingCycle">
+            <property name="toolTip">
+             <string>Enables homing cycle. Requires limit switches on all axes.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Enable Homing Cycle</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpHomeDir">
+         <property name="toolTip">
+          <string>Homing searches for a switch in the positive direction. Invert axes to search in negative direction.</string>
+         </property>
+         <property name="toolTipDuration">
+          <number>0</number>
+         </property>
+         <property name="title">
+          <string>Homing Direction</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QCheckBox" name="cbXHomeInv">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Invert X</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cbYHomeInv">
+            <property name="text">
+             <string>Invert Y</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cbZHomeInv">
+            <property name="text">
+             <string>Invert Z</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpSpindleLaser">
+         <property name="title">
+          <string>Spindle/Laser</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelMaxSpindle">
+            <property name="toolTip">
+             <string>(RPM) Sets PWM to 100% duty cycle.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Max. spindle speed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLineEdit" name="txtMinSpindle"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="labelMinSpindle">
+            <property name="toolTip">
+             <string>(RPM) Sets PWM to 0.4% or lowest duty cycle.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Min. spindle speed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="4">
+           <widget class="QCheckBox" name="cbLaser">
+            <property name="toolTip">
+             <string>Enables laser mode. Consecutive G1/2/3 commands will not halt when spindle speed is changed.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Laser-mode enable</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="txtMaxSpindle"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpLimit">
+         <property name="title">
+          <string>Limits</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QCheckBox" name="cbSoftLimit">
+            <property name="toolTip">
+             <string>Checks within machine travel and sets alarm when exceeded. Requires homing.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Soft limits enable</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cbHardLimit">
+            <property name="toolTip">
+             <string>Immediately halts motion and throws an alarm when switch is triggered.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Hard limits enable</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpStep">
+         <property name="title">
+          <string>Step Timing Configuration</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QLabel" name="labelStepPulse">
+            <property name="toolTip">
+             <string>Sets time length per step. Minimum 3µsec.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Step pulse time (µs)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtStepPulse"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelStepIdle">
+            <property name="toolTip">
+             <string>Sets a short hold delay when stopping to let dynamics settle before disabling steppers. Value 255 keeps motors enabled with no delay.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Step idle delay (ms)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtStepIdle"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpInv">
+         <property name="title">
+          <string>Invert Configuration</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="cbStepEnableInv">
+            <property name="toolTip">
+             <string>Inverts the stepper driver enable pin signal.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Invert step enable pin</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QCheckBox" name="cbLimitInv">
+            <property name="toolTip">
+             <string>Inverts the all of the limit input pins.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Invert limit pins</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QCheckBox" name="cbProbeInv">
+            <property name="toolTip">
+             <string>Inverts the probe input pin signal.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Invert probe pin</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QGroupBox" name="grpStepDirInv">
+            <property name="toolTip">
+             <string>Inverts the direction signal.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="title">
+             <string>Step Direction Invert</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <widget class="QCheckBox" name="cbXStepDirInv">
+               <property name="text">
+                <string>X</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="cbYStepDirInv">
+               <property name="text">
+                <string>Y</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="cbZStepDirInv">
+               <property name="text">
+                <string>Z</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QGroupBox" name="grpStepPulseInv">
+            <property name="toolTip">
+             <string>Inverts the step signal.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="title">
+             <string>Step Pulse Invert</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QCheckBox" name="cbXStepPulseInv">
+               <property name="text">
+                <string>X</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="cbYStepPulseInv">
+               <property name="text">
+                <string>Y</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="cbZStepPulseInv">
+               <property name="text">
+                <string>Z</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpTol">
+         <property name="title">
+          <string>Tolerance Configuration (mm)</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <widget class="QLabel" name="labelJunc">
+            <property name="toolTip">
+             <string>Sets how fast to travel through consecutive motions. Lower value slows it down.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Junction deviation</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtJunc"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelArc">
+            <property name="toolTip">
+             <string>Sets the G2 and G3 arc tracing accuracy based on radial error. Beware: A very small value may effect performance.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Arc tolerance</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtArc"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpReport">
+         <property name="title">
+          <string>Report Configuration</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QLabel" name="labelStatus">
+            <property name="toolTip">
+             <string>Alters data included in status report.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Status Report</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxStatus">
+            <property name="currentText">
+             <string>Machine Position</string>
+            </property>
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>Work Position</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Machine Position</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Buffered Data</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cbInch">
+            <property name="toolTip">
+             <string>Enables inch units when returning any position and rate value that is not a settings value.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Report in inches</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
@@ -200,6 +725,28 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>txtXStep</tabstop>
+  <tabstop>txtYStep</tabstop>
+  <tabstop>txtZStep</tabstop>
+  <tabstop>txtXRate</tabstop>
+  <tabstop>txtYRate</tabstop>
+  <tabstop>txtZRate</tabstop>
+  <tabstop>txtXAccel</tabstop>
+  <tabstop>txtYAccel</tabstop>
+  <tabstop>txtZAccel</tabstop>
+  <tabstop>txtXMaxTrav</tabstop>
+  <tabstop>txtYMaxTrav</tabstop>
+  <tabstop>txtZMaxTrav</tabstop>
+  <tabstop>cbHomingCycle</tabstop>
+  <tabstop>txtLocateFeed</tabstop>
+  <tabstop>txtSearchSeek</tabstop>
+  <tabstop>txtSwitchDebounce</tabstop>
+  <tabstop>txtSwitchPullOff</tabstop>
+  <tabstop>cbXHomeInv</tabstop>
+  <tabstop>cbYHomeInv</tabstop>
+  <tabstop>cbZHomeInv</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

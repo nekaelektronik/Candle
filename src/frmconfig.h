@@ -19,21 +19,50 @@ public:
     void setYStep(double y_step);
     void setZStep(double z_step);
 
-    double getXStep();
-    double getYStep();
-    double getZStep();
+    QString getStepPulseTime();
+    QString getStepIdleDelay();
 
-    double getXRate();
-    double getYRate();
-    double getZRate();
+    QString getStepPulseInv();
+    QString getStepDirInv();
+    QString getStepEnInv();
+    QString getLimitInv();
+    QString getProbeInv();
 
-    double getXAccel();
-    double getYAccel();
-    double getZAccel();
+    QString getJunctionDeviation();
+    QString getArcTolerance();
 
-    double getXMaxTrav();
-    double getYMaxTrav();
-    double getZMaxTrav();
+    QString getStatusReport();
+    QString getInches();
+
+    QString getSoftLimits();
+    QString getHardLimits();
+
+    QString getHomingDirInvert();
+    QString getHomingEnable();
+    QString getLocateFeedRate();
+    QString getSearchSeekRate();
+    QString getSwitchDebounce();
+    QString getSwitchPullOff();
+
+    QString getMaxSpindle();
+    QString getMinSpindle();
+    QString getLaserMode();
+
+    QString getXStep();
+    QString getYStep();
+    QString getZStep();
+
+    QString getXRate();
+    QString getYRate();
+    QString getZRate();
+
+    QString getXAccel();
+    QString getYAccel();
+    QString getZAccel();
+
+    QString getXMaxTrav();
+    QString getYMaxTrav();
+    QString getZMaxTrav();
 
 private:
     Ui::frmConfig *ui;

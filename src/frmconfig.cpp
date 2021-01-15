@@ -25,50 +25,164 @@ void frmConfig::setZStep(double z_step){
     this->z_step = z_step;
 }
 
-double frmConfig::getXStep(){
-    return ui->txtXStep->text().toDouble();
+QString frmConfig::getStepPulseTime(){
+    return ui->txtStepPulse->text();
 }
 
-double frmConfig::getYStep(){
-    return ui->txtYStep->text().toDouble();
+QString frmConfig::getStepIdleDelay(){
+    return ui->txtStepIdle->text();
 }
 
-double frmConfig::getZStep(){
-    return ui->txtZStep->text().toDouble();
+QString frmConfig::getStepPulseInv(){
+    int step_pulse_inv = 0;
+
+    if (ui->cbXStepPulseInv->isChecked())
+        step_pulse_inv = step_pulse_inv + 1;
+    if (ui->cbYStepPulseInv->isChecked())
+        step_pulse_inv = step_pulse_inv + 2;
+    if (ui->cbZStepPulseInv->isChecked())
+        step_pulse_inv = step_pulse_inv + 4;
+
+    return QString::number(step_pulse_inv);
 }
 
-double frmConfig::getXRate(){
-    return ui->txtXRate->text().toDouble();
+QString frmConfig::getStepDirInv(){
+    int step_dir_inv = 0;
+
+    if (ui->cbXStepDirInv->isChecked())
+        step_dir_inv = step_dir_inv + 1;
+    if (ui->cbYStepDirInv->isChecked())
+        step_dir_inv = step_dir_inv + 2;
+    if (ui->cbZStepDirInv->isChecked())
+        step_dir_inv = step_dir_inv + 4;
+
+    return QString::number(step_dir_inv);
 }
 
-double frmConfig::getYRate(){
-    return ui->txtYRate->text().toDouble();
+QString frmConfig::getStepEnInv(){
+    return QString::number(ui->cbStepEnableInv->isChecked());
 }
 
-double frmConfig::getZRate(){
-    return ui->txtZRate->text().toDouble();
+QString frmConfig::getLimitInv(){
+    return QString::number(ui->cbLimitInv->isChecked());
 }
 
-double frmConfig::getXAccel(){
-    return ui->txtXAccel->text().toDouble();
+QString frmConfig::getProbeInv(){
+    return QString::number(ui->cbProbeInv->isChecked());
 }
 
-double frmConfig::getYAccel(){
-    return ui->txtYAccel->text().toDouble();
+QString frmConfig::getJunctionDeviation(){
+    return ui->txtJunc->text();
 }
 
-double frmConfig::getZAccel(){
-    return ui->txtZAccel->text().toDouble();
+QString frmConfig::getArcTolerance(){
+    return ui->txtArc->text();
 }
 
-double frmConfig::getXMaxTrav(){
-    return ui->txtXMaxTrav->text().toDouble();
+QString frmConfig::getStatusReport(){
+    return QString::number(ui->comboBoxStatus->currentIndex());
 }
 
-double frmConfig::getYMaxTrav(){
-    return ui->txtYMaxTrav->text().toDouble();
+QString frmConfig::getInches(){
+    return QString::number(ui->cbInch->isChecked());
 }
 
-double frmConfig::getZMaxTrav(){
-    return ui->txtZMaxTrav->text().toDouble();
+QString frmConfig::getSoftLimits(){
+    return QString::number(ui->cbSoftLimit->isChecked());
+}
+
+QString frmConfig::getHardLimits(){
+    return QString::number(ui->cbHardLimit->isChecked());
+}
+
+QString frmConfig::getHomingDirInvert(){
+    int home_inv = 0;
+    if (ui->cbXHomeInv->isChecked())
+        home_inv = home_inv + 1;
+    if (ui->cbYHomeInv->isChecked())
+        home_inv = home_inv + 2;
+    if (ui->cbZHomeInv->isChecked())
+        home_inv = home_inv + 4;
+
+    return QString::number(home_inv);
+}
+
+QString frmConfig::getHomingEnable(){
+    return QString::number(ui->cbHomingCycle->isChecked());
+}
+
+QString frmConfig::getLocateFeedRate(){
+    return ui->txtLocateFeed->text();
+}
+
+QString frmConfig::getSearchSeekRate(){
+    return ui->txtSearchSeek->text();
+}
+
+QString frmConfig::getSwitchDebounce(){
+    return ui->txtSwitchDebounce->text();
+}
+
+QString frmConfig::getSwitchPullOff(){
+    return ui->txtSwitchPullOff->text();
+}
+
+QString frmConfig::getMaxSpindle(){
+    return ui->txtMaxSpindle->text();
+}
+
+QString frmConfig::getMinSpindle(){
+    return ui->txtMinSpindle->text();
+}
+
+QString frmConfig::getLaserMode(){
+    return QString::number(ui->cbLaser->isChecked());
+}
+
+QString frmConfig::getXStep(){
+    return ui->txtXStep->text();
+}
+
+QString frmConfig::getYStep(){
+    return ui->txtYStep->text();
+}
+
+QString frmConfig::getZStep(){
+    return ui->txtZStep->text();
+}
+
+QString frmConfig::getXRate(){
+    return ui->txtXRate->text();
+}
+
+QString frmConfig::getYRate(){
+    return ui->txtYRate->text();
+}
+
+QString frmConfig::getZRate(){
+    return ui->txtZRate->text();
+}
+
+QString frmConfig::getXAccel(){
+    return ui->txtXAccel->text();
+}
+
+QString frmConfig::getYAccel(){
+    return ui->txtYAccel->text();
+}
+
+QString frmConfig::getZAccel(){
+    return ui->txtZAccel->text();
+}
+
+QString frmConfig::getXMaxTrav(){
+    return ui->txtXMaxTrav->text();
+}
+
+QString frmConfig::getYMaxTrav(){
+    return ui->txtYMaxTrav->text();
+}
+
+QString frmConfig::getZMaxTrav(){
+    return ui->txtZMaxTrav->text();
 }

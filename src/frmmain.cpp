@@ -790,7 +790,7 @@ void frmMain::sendCommand(QString command, int tableIndex, bool showInConsole)
     }
 
     m_serialPort.write((command + "\r").toLatin1());
-    qDebug() << "Sent: " << command;
+    //qDebug() << "Sent: " << command;
 }
 
 void frmMain::grblReset()
@@ -842,12 +842,10 @@ void frmMain::onSerialPortReadyRead()
 {
     while (m_serialPort.canReadLine()) {
         if(!m_configCommands.isEmpty()){
-            qDebug() << m_configCommands[0];
             sendCommand(m_configCommands.takeFirst(), -1, true);
-
         }
         QString data = m_serialPort.readLine().trimmed();
-        qDebug() << "Get: " << data;
+        //qDebug() << "Command: " << ca.command << " Get: " << data;
 
         // Filter prereset responses
         if (m_reseting) {
@@ -1103,6 +1101,7 @@ void frmMain::onSerialPortReadyRead()
                     && !(m_commands[0].command != "[CTRL+X]" && dataIsReset(data))) {
 
                 static QString response; // Full response string
+                //qDebug() << "Response: " << data;
 
                 if ((m_commands[0].command != "[CTRL+X]" && dataIsEnd(data))
                         || (m_commands[0].command == "[CTRL+X]" && dataIsReset(data))) {
@@ -1113,6 +1112,11 @@ void frmMain::onSerialPortReadyRead()
                     CommandAttributes ca = m_commands.takeFirst();
                     QTextBlock tb = ui->txtConsole->document()->findBlockByNumber(ca.consoleIndex);
                     QTextCursor tc(tb);
+
+                    // Send setting command again if it gets error:3
+                    qDebug() << "Command: " << ca.command << " Response: " << data;
+                    if (response.contains("error:3"))
+                        m_configCommands.append(ca.command);
 
                     // Restore absolute/relative coordinate system after jog
                     if (ca.command.toUpper() == "$G" && ca.tableIndex == -2) {
@@ -1274,6 +1278,8 @@ void frmMain::onSerialPortReadyRead()
                             errors.append(QString::number(ca.tableIndex + 1) + ": " + ca.command
                                           + " < " + response + "\n");
 
+                            qDebug() << "Command: " + ca.command + " Response: " + response;
+
                             m_senderErrorBox->setText(tr("Error message(s) received:\n") + errors);
 
                             if (!holding) {
@@ -1366,6 +1372,7 @@ void frmMain::onSerialPortReadyRead()
 
                     updateControlsState();
                 }
+                qDebug() << "Data: " << data;
                 ui->txtConsole->appendPlainText(data);
             }
         } else {
@@ -1393,7 +1400,7 @@ void frmMain::onTimerConnection()
 {
     if (!m_serialPort.isOpen()) {
         openPort();
-    } else if (!m_homing/* && !m_reseting*/ && !ui->cmdFilePause->isChecked() && m_queue.length() == 0) {
+    } else if (!m_homing/* && !m_reseting*/ && !ui->cmdFilePause->isChecked() && m_queue.length() == 0 && m_configCommands.isEmpty()) {
         if (m_updateSpindleSpeed) {
             m_updateSpindleSpeed = false;
             sendCommand(QString("S%1").arg(ui->slbSpindle->value()), -2, m_settings->showUICommands());
@@ -1401,7 +1408,6 @@ void frmMain::onTimerConnection()
         if (m_updateParserStatus) {
             m_updateParserStatus = false;
             sendCommand("$G", -3, false);
-            qDebug() << "On Timer Connection";
         }
     }
 }
@@ -2706,14 +2712,69 @@ void frmMain::on_actAbout_triggered()
 
 void frmMain::on_actServiceConfig_triggered()
 {
+    //QThread::sleep(1);
+    //qDebug() << "Opening";
+    //QThread::sleep(1);
     if(m_frmConfig.exec()){
         qDebug() << "Accept";
-        QString x_step_command = QString("$100=%1").arg(m_frmConfig.getXStep());
-        m_configCommands.append(x_step_command);
-        QString y_step_command = QString("$101=%1").arg(m_frmConfig.getYStep());
-        m_configCommands.append(y_step_command);
-        QString z_step_command = QString("$102=%1").arg(m_frmConfig.getZStep());
-        m_configCommands.append(z_step_command);
+
+        // Step timing configs
+        m_configCommands.append(QString("$0=") + m_frmConfig.getStepPulseTime());
+        m_configCommands.append(QString("$1=") + m_frmConfig.getStepIdleDelay());
+
+        // Homing configs
+        m_configCommands.append(QString("$22=") + m_frmConfig.getHomingEnable());
+        m_configCommands.append(QString("$23=") + m_frmConfig.getHomingDirInvert());
+        m_configCommands.append(QString("$24=") + m_frmConfig.getLocateFeedRate());
+        m_configCommands.append(QString("$25=") + m_frmConfig.getSearchSeekRate());
+        m_configCommands.append(QString("$26=") + m_frmConfig.getSwitchDebounce());
+        m_configCommands.append(QString("$27=") + m_frmConfig.getSwitchPullOff());
+
+        // Invert configs
+        m_configCommands.append(QString("$2=") + m_frmConfig.getStepPulseInv());
+        m_configCommands.append(QString("$3=") + m_frmConfig.getStepDirInv());
+        m_configCommands.append(QString("$4=") + m_frmConfig.getStepEnInv());
+        m_configCommands.append(QString("$5=") + m_frmConfig.getLimitInv());
+        m_configCommands.append(QString("$6=") + m_frmConfig.getProbeInv());
+
+        // Status report
+        m_configCommands.append(QString("$10=") + m_frmConfig.getStatusReport());
+
+        // Tolerance configs
+        m_configCommands.append(QString("$11=") + m_frmConfig.getJunctionDeviation());
+        m_configCommands.append(QString("$12=") + m_frmConfig.getArcTolerance());
+
+        // Report in inches
+        m_configCommands.append(QString("$13=") + m_frmConfig.getInches());
+
+        // Limits configs
+        m_configCommands.append(QString("$20=") + m_frmConfig.getSoftLimits());
+        m_configCommands.append(QString("$21=") + m_frmConfig.getHardLimits());
+
+        // Spindle and laser configs
+        m_configCommands.append(QString("$30=") + m_frmConfig.getMaxSpindle());
+        m_configCommands.append(QString("$31=") + m_frmConfig.getMinSpindle());
+        m_configCommands.append(QString("$32=") + m_frmConfig.getLaserMode());
+
+        // Step configs
+        m_configCommands.append(QString("$100=") + m_frmConfig.getXStep());
+        m_configCommands.append(QString("$101=") + m_frmConfig.getYStep());
+        m_configCommands.append(QString("$102=") + m_frmConfig.getZStep());
+
+        // Maximum rate configs
+        m_configCommands.append(QString("$110=") + m_frmConfig.getXRate());
+        m_configCommands.append(QString("$111=") + m_frmConfig.getYRate());
+        m_configCommands.append(QString("$112=") + m_frmConfig.getZRate());
+
+        // Acceleration configs
+        m_configCommands.append(QString("$120=") + m_frmConfig.getXAccel());
+        m_configCommands.append(QString("$121=") + m_frmConfig.getYAccel());
+        m_configCommands.append(QString("$122=") + m_frmConfig.getZAccel());
+
+        // Maximum travel configs
+        m_configCommands.append(QString("$130=") + m_frmConfig.getXMaxTrav());
+        m_configCommands.append(QString("$131=") + m_frmConfig.getYMaxTrav());
+        m_configCommands.append(QString("$132=") + m_frmConfig.getZMaxTrav());
     }
     else{
         qDebug() << "Reject";
