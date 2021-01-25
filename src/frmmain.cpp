@@ -32,7 +32,6 @@
 #include <QAction>
 #include <QLayout>
 #include <QMimeData>
-#include <QThread>
 #include "frmmain.h"
 #include "ui_frmmain.h"
 
@@ -91,6 +90,8 @@ frmMain::frmMain(QWidget *parent) :
 
     m_settings = new frmSettings(this);
     ui->setupUi(this);
+
+    flag_configLoad = true;
 
 #ifdef WINDOWS
     if (QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
@@ -735,6 +736,7 @@ void frmMain::openPort()
         ui->txtStatus->setStyleSheet(QString("background-color: palette(button); color: palette(text);"));
 //        updateControlsState();
         grblReset();
+        qDebug() << "Port";
     }
 }
 
@@ -841,11 +843,19 @@ int frmMain::bufferLength()
 void frmMain::onSerialPortReadyRead()
 {
     while (m_serialPort.canReadLine()) {
-        if(!m_configCommands.isEmpty()){
+        if (!m_configCommands.isEmpty()){
             sendCommand(m_configCommands.takeFirst(), -1, true);
         }
+
+        if (m_configLoad.isEmpty())
+            flag_configLoad = false;
+
+        if (!flag_configLoad && m_serialPort.isOpen() && m_configCommands.isEmpty()){
+            sendCommand("$$", -1, false);
+            flag_configLoad = true;
+        }
+
         QString data = m_serialPort.readLine().trimmed();
-        //qDebug() << "Command: " << ca.command << " Get: " << data;
 
         // Filter prereset responses
         if (m_reseting) {
@@ -1100,8 +1110,10 @@ void frmMain::onSerialPortReadyRead()
             if (m_commands.length() > 0 && !dataIsFloating(data)
                     && !(m_commands[0].command != "[CTRL+X]" && dataIsReset(data))) {
 
+                if (data.startsWith('$') && m_configLoad.size() < 34)
+                    m_configLoad.append(data);
+
                 static QString response; // Full response string
-                //qDebug() << "Response: " << data;
 
                 if ((m_commands[0].command != "[CTRL+X]" && dataIsEnd(data))
                         || (m_commands[0].command == "[CTRL+X]" && dataIsReset(data))) {
@@ -1114,8 +1126,7 @@ void frmMain::onSerialPortReadyRead()
                     QTextCursor tc(tb);
 
                     // Send setting command again if it gets error:3
-                    qDebug() << "Command: " << ca.command << " Response: " << data;
-                    if (response.contains("error:3"))
+                    if (data.contains("error:3"))
                         m_configCommands.append(ca.command);
 
                     // Restore absolute/relative coordinate system after jog
@@ -1278,8 +1289,6 @@ void frmMain::onSerialPortReadyRead()
                             errors.append(QString::number(ca.tableIndex + 1) + ": " + ca.command
                                           + " < " + response + "\n");
 
-                            qDebug() << "Command: " + ca.command + " Response: " + response;
-
                             m_senderErrorBox->setText(tr("Error message(s) received:\n") + errors);
 
                             if (!holding) {
@@ -1372,7 +1381,6 @@ void frmMain::onSerialPortReadyRead()
 
                     updateControlsState();
                 }
-                qDebug() << "Data: " << data;
                 ui->txtConsole->appendPlainText(data);
             }
         } else {
@@ -2712,12 +2720,125 @@ void frmMain::on_actAbout_triggered()
 
 void frmMain::on_actServiceConfig_triggered()
 {
-    //QThread::sleep(1);
-    //qDebug() << "Opening";
-    //QThread::sleep(1);
-    if(m_frmConfig.exec()){
-        qDebug() << "Accept";
+    QRegExp rx("(\\d+)=([+-]?\\d*\\.?\\d+)");
+    int command;
+    QString value;
 
+    for (int i = 0; i < m_configLoad.size(); i++){
+        if (rx.indexIn(m_configLoad[i]) != -1) {
+            command = rx.cap(1).toInt();
+            value = rx.cap(2);
+
+            switch (command) {
+            case 0:
+                m_frmConfig.setStepPulseTime(value);
+                break;
+            case 1:
+                m_frmConfig.setStepIdleDelay(value);
+                break;
+            case 2:
+                m_frmConfig.setStepPulseInv(value);
+                break;
+            case 3:
+                m_frmConfig.setStepDirInv(value);
+                break;
+            case 4:
+                m_frmConfig.setStepEnInv(value);
+                break;
+            case 5:
+                m_frmConfig.setLimitInv(value);
+                break;
+            case 6:
+                m_frmConfig.setProbeInv(value);
+                break;
+            case 10:
+                m_frmConfig.setStatusReport(value);
+                break;
+            case 11:
+                m_frmConfig.setJunctionDeviation(value);
+                break;
+            case 12:
+                m_frmConfig.setArcTolerance(value);
+                break;
+            case 13:
+                m_frmConfig.setInches(value);
+                break;
+            case 20:
+                m_frmConfig.setSoftLimits(value);
+                break;
+            case 21:
+                m_frmConfig.setHardLimits(value);
+                break;
+            case 22:
+                m_frmConfig.setHomingEnable(value);
+                break;
+            case 23:
+                m_frmConfig.setHomingDirInvert(value);
+                break;
+            case 24:
+                m_frmConfig.setLocateFeedRate(value);
+                break;
+            case 25:
+                m_frmConfig.setSearchSeekRate(value);
+                break;
+            case 26:
+                m_frmConfig.setSwitchDebounce(value);
+                break;
+            case 27:
+                m_frmConfig.setSwitchPullOff(value);
+                break;
+            case 30:
+                m_frmConfig.setMaxSpindle(value);
+                break;
+            case 31:
+                m_frmConfig.setMinSpindle(value);
+                break;
+            case 32:
+                m_frmConfig.setLaserMode(value);
+                break;
+            case 100:
+                m_frmConfig.setXStep(value);
+                break;
+            case 101:
+                m_frmConfig.setYStep(value);
+                break;
+            case 102:
+                m_frmConfig.setZStep(value);
+                break;
+            case 110:
+                m_frmConfig.setXRate(value);
+                break;
+            case 111:
+                m_frmConfig.setYRate(value);
+                break;
+            case 112:
+                m_frmConfig.setZRate(value);
+                break;
+            case 120:
+                m_frmConfig.setXAccel(value);
+                break;
+            case 121:
+                m_frmConfig.setYAccel(value);
+                break;
+            case 122:
+                m_frmConfig.setZAccel(value);
+                break;
+            case 130:
+                m_frmConfig.setXMaxTrav(value);
+                break;
+            case 131:
+                m_frmConfig.setYMaxTrav(value);
+                break;
+            case 132:
+                m_frmConfig.setZMaxTrav(value);
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
+    if(m_frmConfig.exec()){
         // Step timing configs
         m_configCommands.append(QString("$0=") + m_frmConfig.getStepPulseTime());
         m_configCommands.append(QString("$1=") + m_frmConfig.getStepIdleDelay());
@@ -2775,9 +2896,10 @@ void frmMain::on_actServiceConfig_triggered()
         m_configCommands.append(QString("$130=") + m_frmConfig.getXMaxTrav());
         m_configCommands.append(QString("$131=") + m_frmConfig.getYMaxTrav());
         m_configCommands.append(QString("$132=") + m_frmConfig.getZMaxTrav());
-    }
-    else{
-        qDebug() << "Reject";
+
+        // Clean config list
+        m_configLoad.clear();
+        flag_configLoad = false;
     }
 }
 

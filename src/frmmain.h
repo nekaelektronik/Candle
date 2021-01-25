@@ -257,6 +257,8 @@ private:
     QStringList m_statusForeColors;
 
     QList<QString> m_configCommands;
+    QList<QString> m_configLoad;
+    bool flag_configLoad;
 
 #ifdef WINDOWS
     QWinTaskbarButton *m_taskBarButton;
