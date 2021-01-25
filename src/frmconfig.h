@@ -200,6 +200,10 @@ private:
     QString y_max_trav;
     QString z_max_trav;
 
+    QString step_pulse_inv_new;
+    QString step_dir_inv_new;
+    QString home_inv_new;
+
 private slots:
     void test(int state);
 };

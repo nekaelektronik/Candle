@@ -256,29 +256,11 @@ QString frmConfig::getStepIdleDelay(){
 }
 
 QString frmConfig::getStepPulseInv(){
-    int step_pulse_inv = 0;
-
-    if (ui->cbXStepPulseInv->isChecked())
-        step_pulse_inv = step_pulse_inv + 1;
-    if (ui->cbYStepPulseInv->isChecked())
-        step_pulse_inv = step_pulse_inv + 2;
-    if (ui->cbZStepPulseInv->isChecked())
-        step_pulse_inv = step_pulse_inv + 4;
-
-    return QString::number(step_pulse_inv);
+    return this->step_pulse_inv_new;
 }
 
 QString frmConfig::getStepDirInv(){
-    int step_dir_inv = 0;
-
-    if (ui->cbXStepDirInv->isChecked())
-        step_dir_inv = step_dir_inv + 1;
-    if (ui->cbYStepDirInv->isChecked())
-        step_dir_inv = step_dir_inv + 2;
-    if (ui->cbZStepDirInv->isChecked())
-        step_dir_inv = step_dir_inv + 4;
-
-    return QString::number(step_dir_inv);
+    return this->step_dir_inv_new;
 }
 
 QString frmConfig::getStepEnInv(){
@@ -318,15 +300,7 @@ QString frmConfig::getHardLimits(){
 }
 
 QString frmConfig::getHomingDirInvert(){
-    int home_inv = 0;
-    if (ui->cbXHomeInv->isChecked())
-        home_inv = home_inv + 1;
-    if (ui->cbYHomeInv->isChecked())
-        home_inv = home_inv + 2;
-    if (ui->cbZHomeInv->isChecked())
-        home_inv = home_inv + 4;
-
-    return QString::number(home_inv);
+    return home_inv_new;
 }
 
 QString frmConfig::getHomingEnable(){
@@ -427,7 +401,11 @@ bool frmConfig::isStepPulseInvChanged(){
     if (ui->cbZStepPulseInv->isChecked())
         step_pulse_inv = step_pulse_inv + 4;
 
-    return QString::number(step_pulse_inv) != this->step_pulse_inv;
+    this->step_pulse_inv_new = QString::number(step_pulse_inv);
+
+    qDebug() << "Step pulse: " << this->step_pulse_inv_new;
+
+    return this->step_pulse_inv_new != this->step_pulse_inv;
 }
 
 bool frmConfig::isStepDirInvChanged(){
@@ -440,7 +418,9 @@ bool frmConfig::isStepDirInvChanged(){
     if (ui->cbZStepDirInv->isChecked())
         step_dir_inv = step_dir_inv + 4;
 
-    return QString::number(step_dir_inv) != this->step_dir_inv;
+    this->step_dir_inv_new = QString::number(step_dir_inv);
+
+    return this->step_dir_inv_new != this->step_dir_inv;
 }
 
 bool frmConfig::isStepEnInvChanged(){
@@ -488,7 +468,9 @@ bool frmConfig::isHomingDirInvertChanged(){
     if (ui->cbZHomeInv->isChecked())
         home_inv = home_inv + 4;
 
-    return QString::number(home_inv) != this->homing_dir_inv;
+    this->home_inv_new = QString::number(home_inv);
+
+    return this->home_inv_new != this->homing_dir_inv;
 }
 
 bool frmConfig::isHomingEnableChanged(){
