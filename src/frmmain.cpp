@@ -2840,62 +2840,96 @@ void frmMain::on_actServiceConfig_triggered()
 
     if(m_frmConfig.exec()){
         // Step timing configs
-        m_configCommands.append(QString("$0=") + m_frmConfig.getStepPulseTime());
-        m_configCommands.append(QString("$1=") + m_frmConfig.getStepIdleDelay());
+        if (m_frmConfig.isStepPulseTimeChanged())
+            m_configCommands.append(QString("$0=") + m_frmConfig.getStepPulseTime());
+        if (m_frmConfig.isStepIdleDelayChanged())
+            m_configCommands.append(QString("$1=") + m_frmConfig.getStepIdleDelay());
 
         // Homing configs
-        m_configCommands.append(QString("$22=") + m_frmConfig.getHomingEnable());
-        m_configCommands.append(QString("$23=") + m_frmConfig.getHomingDirInvert());
-        m_configCommands.append(QString("$24=") + m_frmConfig.getLocateFeedRate());
-        m_configCommands.append(QString("$25=") + m_frmConfig.getSearchSeekRate());
-        m_configCommands.append(QString("$26=") + m_frmConfig.getSwitchDebounce());
-        m_configCommands.append(QString("$27=") + m_frmConfig.getSwitchPullOff());
+        if (m_frmConfig.isHomingEnableChanged())
+            m_configCommands.append(QString("$22=") + m_frmConfig.getHomingEnable());
+        if (m_frmConfig.isHomingDirInvertChanged())
+            m_configCommands.append(QString("$23=") + m_frmConfig.getHomingDirInvert());
+        if (m_frmConfig.isLocateFeedRateChanged())
+            m_configCommands.append(QString("$24=") + m_frmConfig.getLocateFeedRate());
+        if (m_frmConfig.isSearchSeekRateChanged())
+            m_configCommands.append(QString("$25=") + m_frmConfig.getSearchSeekRate());
+        if (m_frmConfig.isSwitchDebounceChanged())
+            m_configCommands.append(QString("$26=") + m_frmConfig.getSwitchDebounce());
+        if (m_frmConfig.isSwitchPullOffChanged())
+            m_configCommands.append(QString("$27=") + m_frmConfig.getSwitchPullOff());
 
         // Invert configs
-        m_configCommands.append(QString("$2=") + m_frmConfig.getStepPulseInv());
-        m_configCommands.append(QString("$3=") + m_frmConfig.getStepDirInv());
-        m_configCommands.append(QString("$4=") + m_frmConfig.getStepEnInv());
-        m_configCommands.append(QString("$5=") + m_frmConfig.getLimitInv());
-        m_configCommands.append(QString("$6=") + m_frmConfig.getProbeInv());
+        if (m_frmConfig.isStepPulseInvChanged())
+            m_configCommands.append(QString("$2=") + m_frmConfig.getStepPulseInv());
+        if (m_frmConfig.isStepDirInvChanged())
+            m_configCommands.append(QString("$3=") + m_frmConfig.getStepDirInv());
+        if (m_frmConfig.isStepEnInvChanged())
+            m_configCommands.append(QString("$4=") + m_frmConfig.getStepEnInv());
+        if (m_frmConfig.isLimitInvChanged())
+            m_configCommands.append(QString("$5=") + m_frmConfig.getLimitInv());
+        if (m_frmConfig.isProbeInvChanged())
+            m_configCommands.append(QString("$6=") + m_frmConfig.getProbeInv());
 
         // Status report
-        m_configCommands.append(QString("$10=") + m_frmConfig.getStatusReport());
+        if (m_frmConfig.isStatusReportChanged())
+            m_configCommands.append(QString("$10=") + m_frmConfig.getStatusReport());
 
         // Tolerance configs
-        m_configCommands.append(QString("$11=") + m_frmConfig.getJunctionDeviation());
-        m_configCommands.append(QString("$12=") + m_frmConfig.getArcTolerance());
+        if (m_frmConfig.isJunctionDeviationChanged())
+            m_configCommands.append(QString("$11=") + m_frmConfig.getJunctionDeviation());
+        if (m_frmConfig.isArcToleranceChanged())
+            m_configCommands.append(QString("$12=") + m_frmConfig.getArcTolerance());
 
         // Report in inches
-        m_configCommands.append(QString("$13=") + m_frmConfig.getInches());
+        if (m_frmConfig.isInchesChanged())
+            m_configCommands.append(QString("$13=") + m_frmConfig.getInches());
 
         // Limits configs
-        m_configCommands.append(QString("$20=") + m_frmConfig.getSoftLimits());
-        m_configCommands.append(QString("$21=") + m_frmConfig.getHardLimits());
+        if (m_frmConfig.isSoftLimitsChanged())
+            m_configCommands.append(QString("$20=") + m_frmConfig.getSoftLimits());
+        if (m_frmConfig.isHardLimitsChanged())
+            m_configCommands.append(QString("$21=") + m_frmConfig.getHardLimits());
 
         // Spindle and laser configs
-        m_configCommands.append(QString("$30=") + m_frmConfig.getMaxSpindle());
-        m_configCommands.append(QString("$31=") + m_frmConfig.getMinSpindle());
-        m_configCommands.append(QString("$32=") + m_frmConfig.getLaserMode());
+        if (m_frmConfig.isMaxSpindleChanged())
+            m_configCommands.append(QString("$30=") + m_frmConfig.getMaxSpindle());
+        if (m_frmConfig.isMinSpindleChanged())
+            m_configCommands.append(QString("$31=") + m_frmConfig.getMinSpindle());
+        if (m_frmConfig.isLaserModeChanged())
+            m_configCommands.append(QString("$32=") + m_frmConfig.getLaserMode());
 
         // Step configs
-        m_configCommands.append(QString("$100=") + m_frmConfig.getXStep());
-        m_configCommands.append(QString("$101=") + m_frmConfig.getYStep());
-        m_configCommands.append(QString("$102=") + m_frmConfig.getZStep());
+        if (m_frmConfig.isXStepChanged())
+            m_configCommands.append(QString("$100=") + m_frmConfig.getXStep());
+        if (m_frmConfig.isYStepChanged())
+            m_configCommands.append(QString("$101=") + m_frmConfig.getYStep());
+        if (m_frmConfig.isZStepChanged())
+            m_configCommands.append(QString("$102=") + m_frmConfig.getZStep());
 
         // Maximum rate configs
-        m_configCommands.append(QString("$110=") + m_frmConfig.getXRate());
-        m_configCommands.append(QString("$111=") + m_frmConfig.getYRate());
-        m_configCommands.append(QString("$112=") + m_frmConfig.getZRate());
+        if (m_frmConfig.isXRateChanged())
+            m_configCommands.append(QString("$110=") + m_frmConfig.getXRate());
+        if (m_frmConfig.isYRateChanged())
+            m_configCommands.append(QString("$111=") + m_frmConfig.getYRate());
+        if (m_frmConfig.isZRateChanged())
+            m_configCommands.append(QString("$112=") + m_frmConfig.getZRate());
 
         // Acceleration configs
-        m_configCommands.append(QString("$120=") + m_frmConfig.getXAccel());
-        m_configCommands.append(QString("$121=") + m_frmConfig.getYAccel());
-        m_configCommands.append(QString("$122=") + m_frmConfig.getZAccel());
+        if (m_frmConfig.isXAccelChanged())
+            m_configCommands.append(QString("$120=") + m_frmConfig.getXAccel());
+        if (m_frmConfig.isYAccelChanged())
+            m_configCommands.append(QString("$121=") + m_frmConfig.getYAccel());
+        if (m_frmConfig.isZAccelChanged())
+            m_configCommands.append(QString("$122=") + m_frmConfig.getZAccel());
 
         // Maximum travel configs
-        m_configCommands.append(QString("$130=") + m_frmConfig.getXMaxTrav());
-        m_configCommands.append(QString("$131=") + m_frmConfig.getYMaxTrav());
-        m_configCommands.append(QString("$132=") + m_frmConfig.getZMaxTrav());
+        if (m_frmConfig.isXMaxTravChanged())
+            m_configCommands.append(QString("$130=") + m_frmConfig.getXMaxTrav());
+        if (m_frmConfig.isYMaxTravChanged())
+            m_configCommands.append(QString("$131=") + m_frmConfig.getYMaxTrav());
+        if (m_frmConfig.isZMaxTravChanged())
+            m_configCommands.append(QString("$132=") + m_frmConfig.getZMaxTrav());
 
         // Clean config list
         m_configLoad.clear();

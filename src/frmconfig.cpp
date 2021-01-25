@@ -408,3 +408,165 @@ QString frmConfig::getYMaxTrav(){
 QString frmConfig::getZMaxTrav(){
     return ui->txtZMaxTrav->text();
 }
+
+bool frmConfig::isStepPulseTimeChanged(){
+    return ui->txtStepPulse->text() != this->step_pulse_time;
+}
+
+bool frmConfig::isStepIdleDelayChanged(){
+    return ui->txtStepIdle->text() != this->step_idle_delay;
+}
+
+bool frmConfig::isStepPulseInvChanged(){
+    int step_pulse_inv = 0;
+
+    if (ui->cbXStepPulseInv->isChecked())
+        step_pulse_inv = step_pulse_inv + 1;
+    if (ui->cbYStepPulseInv->isChecked())
+        step_pulse_inv = step_pulse_inv + 2;
+    if (ui->cbZStepPulseInv->isChecked())
+        step_pulse_inv = step_pulse_inv + 4;
+
+    return QString::number(step_pulse_inv) != this->step_pulse_inv;
+}
+
+bool frmConfig::isStepDirInvChanged(){
+    int step_dir_inv = 0;
+
+    if (ui->cbXStepDirInv->isChecked())
+        step_dir_inv = step_dir_inv + 1;
+    if (ui->cbYStepDirInv->isChecked())
+        step_dir_inv = step_dir_inv + 2;
+    if (ui->cbZStepDirInv->isChecked())
+        step_dir_inv = step_dir_inv + 4;
+
+    return QString::number(step_dir_inv) != this->step_dir_inv;
+}
+
+bool frmConfig::isStepEnInvChanged(){
+    return QString::number(ui->cbStepEnableInv->isChecked()) != this->step_en_inv;
+}
+
+bool frmConfig::isLimitInvChanged(){
+    return QString::number(ui->cbLimitInv->isChecked()) != this->limit_inv;
+}
+
+bool frmConfig::isProbeInvChanged(){
+    return QString::number(ui->cbProbeInv->isChecked()) != this->probe_inv;
+}
+
+bool frmConfig::isJunctionDeviationChanged(){
+    return ui->txtJunc->text() != this->junction_deviation;
+}
+
+bool frmConfig::isArcToleranceChanged(){
+    return ui->txtArc->text() != this->arc_tolerance;
+}
+
+bool frmConfig::isStatusReportChanged(){
+    return QString::number(ui->comboBoxStatus->currentIndex()) != this->status_report;
+}
+
+bool frmConfig::isInchesChanged(){
+    return QString::number(ui->cbInch->isChecked()) != this->inches;
+}
+
+bool frmConfig::isSoftLimitsChanged(){
+    return QString::number(ui->cbSoftLimit->isChecked()) != this->soft_limits;
+}
+
+bool frmConfig::isHardLimitsChanged(){
+    return QString::number(ui->cbHardLimit->isChecked()) != this->hard_limits;
+}
+
+bool frmConfig::isHomingDirInvertChanged(){
+    int home_inv = 0;
+    if (ui->cbXHomeInv->isChecked())
+        home_inv = home_inv + 1;
+    if (ui->cbYHomeInv->isChecked())
+        home_inv = home_inv + 2;
+    if (ui->cbZHomeInv->isChecked())
+        home_inv = home_inv + 4;
+
+    return QString::number(home_inv) != this->homing_dir_inv;
+}
+
+bool frmConfig::isHomingEnableChanged(){
+    return QString::number(ui->cbHomingCycle->isChecked()) != this->homing_enable;
+}
+
+bool frmConfig::isLocateFeedRateChanged(){
+    return ui->txtLocateFeed->text() != this->locate_feed_rate;
+}
+
+bool frmConfig::isSearchSeekRateChanged(){
+    return ui->txtSearchSeek->text() != this->search_seek_rate;
+}
+
+bool frmConfig::isSwitchDebounceChanged(){
+    return ui->txtSwitchDebounce->text() != this->switch_debounce;
+}
+
+bool frmConfig::isSwitchPullOffChanged(){
+    return ui->txtSwitchPullOff->text() != this->switch_pull_off;
+}
+
+bool frmConfig::isMaxSpindleChanged(){
+    return ui->txtMaxSpindle->text() != this->max_spindle;
+}
+
+bool frmConfig::isMinSpindleChanged(){
+    return ui->txtMinSpindle->text() != this->min_spindle;
+}
+
+bool frmConfig::isLaserModeChanged(){
+    return QString::number(ui->cbLaser->isChecked()) != this->laser_mode;
+}
+
+bool frmConfig::isXStepChanged(){
+    return ui->txtXStep->text() != this->x_step;
+}
+
+bool frmConfig::isYStepChanged(){
+    return ui->txtYStep->text() != this->y_step;
+}
+
+bool frmConfig::isZStepChanged(){
+    return ui->txtZStep->text() != this->z_step;
+}
+
+bool frmConfig::isXRateChanged(){
+    return ui->txtXRate->text() != this->x_rate;
+}
+
+bool frmConfig::isYRateChanged(){
+    return ui->txtYRate->text() != this->y_rate;
+}
+
+bool frmConfig::isZRateChanged(){
+    return ui->txtZRate->text() != this->z_rate;
+}
+
+bool frmConfig::isXAccelChanged(){
+    return ui->txtXAccel->text() != this->x_accel;
+}
+
+bool frmConfig::isYAccelChanged(){
+    return ui->txtYAccel->text() != this->y_accel;
+}
+
+bool frmConfig::isZAccelChanged(){
+    return ui->txtZAccel->text() != this->z_accel;
+}
+
+bool frmConfig::isXMaxTravChanged(){
+    return ui->txtXMaxTrav->text() != this->x_max_trav;
+}
+
+bool frmConfig::isYMaxTravChanged(){
+    return ui->txtYMaxTrav->text() != this->y_max_trav;
+}
+
+bool frmConfig::isZMaxTravChanged(){
+    return ui->txtZMaxTrav->text() != this->z_max_trav;
+}

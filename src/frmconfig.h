@@ -106,6 +106,51 @@ public:
     QString getYMaxTrav();
     QString getZMaxTrav();
 
+    bool isStepPulseTimeChanged();
+    bool isStepIdleDelayChanged();
+
+    bool isStepPulseInvChanged();
+    bool isStepDirInvChanged();
+    bool isStepEnInvChanged();
+    bool isLimitInvChanged();
+    bool isProbeInvChanged();
+
+    bool isJunctionDeviationChanged();
+    bool isArcToleranceChanged();
+
+    bool isStatusReportChanged();
+    bool isInchesChanged();
+
+    bool isSoftLimitsChanged();
+    bool isHardLimitsChanged();
+
+    bool isHomingDirInvertChanged();
+    bool isHomingEnableChanged();
+    bool isLocateFeedRateChanged();
+    bool isSearchSeekRateChanged();
+    bool isSwitchDebounceChanged();
+    bool isSwitchPullOffChanged();
+
+    bool isMaxSpindleChanged();
+    bool isMinSpindleChanged();
+    bool isLaserModeChanged();
+
+    bool isXStepChanged();
+    bool isYStepChanged();
+    bool isZStepChanged();
+
+    bool isXRateChanged();
+    bool isYRateChanged();
+    bool isZRateChanged();
+
+    bool isXAccelChanged();
+    bool isYAccelChanged();
+    bool isZAccelChanged();
+
+    bool isXMaxTravChanged();
+    bool isYMaxTravChanged();
+    bool isZMaxTravChanged();
+
 private:
     Ui::frmConfig *ui;
 
