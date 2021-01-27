@@ -23,7 +23,7 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-473</y>
+        <y>0</y>
         <width>557</width>
         <height>1141</height>
        </rect>
@@ -726,6 +726,7 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>txtXStep</tabstop>
   <tabstop>txtYStep</tabstop>
   <tabstop>txtZStep</tabstop>
   <tabstop>txtXRate</tabstop>
@@ -745,6 +746,27 @@
   <tabstop>cbXHomeInv</tabstop>
   <tabstop>cbYHomeInv</tabstop>
   <tabstop>cbZHomeInv</tabstop>
+  <tabstop>cbLaser</tabstop>
+  <tabstop>txtMaxSpindle</tabstop>
+  <tabstop>txtMinSpindle</tabstop>
+  <tabstop>cbSoftLimit</tabstop>
+  <tabstop>cbHardLimit</tabstop>
+  <tabstop>txtStepPulse</tabstop>
+  <tabstop>txtStepIdle</tabstop>
+  <tabstop>cbXStepPulseInv</tabstop>
+  <tabstop>cbYStepPulseInv</tabstop>
+  <tabstop>cbZStepPulseInv</tabstop>
+  <tabstop>cbXStepDirInv</tabstop>
+  <tabstop>cbYStepDirInv</tabstop>
+  <tabstop>cbZStepDirInv</tabstop>
+  <tabstop>cbStepEnableInv</tabstop>
+  <tabstop>cbLimitInv</tabstop>
+  <tabstop>cbProbeInv</tabstop>
+  <tabstop>txtJunc</tabstop>
+  <tabstop>txtArc</tabstop>
+  <tabstop>comboBoxStatus</tabstop>
+  <tabstop>cbInch</tabstop>
+  <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources/>
  <connections>
