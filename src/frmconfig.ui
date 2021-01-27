@@ -23,8 +23,8 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-263</y>
-        <width>528</width>
+        <y>-473</y>
+        <width>557</width>
         <height>1141</height>
        </rect>
       </property>
@@ -231,39 +231,39 @@
           <item row="2" column="0">
            <widget class="QLabel" name="labelFeedRate">
             <property name="toolTip">
-             <string>(mm/min) Feed rate to slowly engage limit switch to determine its location accurately.</string>
+             <string>Feed rate to slowly engage limit switch to determine its location accurately.</string>
             </property>
             <property name="toolTipDuration">
              <number>0</number>
             </property>
             <property name="text">
-             <string>Locate feed rate</string>
+             <string>Locate feed rate (mm/min)</string>
             </property>
            </widget>
           </item>
           <item row="3" column="2">
            <widget class="QLabel" name="labelPullOff">
             <property name="toolTip">
-             <string>(mm) Retract distance after triggering switch to disengage it. Homing will fail if switch isn't cleared.</string>
+             <string>Retract distance after triggering switch to disengage it. Homing will fail if switch isn't cleared.</string>
             </property>
             <property name="toolTipDuration">
              <number>0</number>
             </property>
             <property name="text">
-             <string>Switch pull-off distance</string>
+             <string>Switch pull-off distance (mm)</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelDebounce">
             <property name="toolTip">
-             <string>(ms) Sets a short delay between phases of homing cycle to let a switch debounce.</string>
+             <string>Sets a short delay between phases of homing cycle to let a switch debounce.</string>
             </property>
             <property name="toolTipDuration">
              <number>0</number>
             </property>
             <property name="text">
-             <string>Switch debounce delay</string>
+             <string>Switch debounce delay (ms)</string>
             </property>
            </widget>
           </item>
@@ -275,19 +275,6 @@
           </item>
           <item row="2" column="1">
            <widget class="QLineEdit" name="txtLocateFeed"/>
-          </item>
-          <item row="2" column="2">
-           <widget class="QLabel" name="labelSeekRate">
-            <property name="toolTip">
-             <string>(mm/min) Seek rate to quickly find the limit switch before the slower locating phase.</string>
-            </property>
-            <property name="toolTipDuration">
-             <number>0</number>
-            </property>
-            <property name="text">
-             <string>Search seek rate</string>
-            </property>
-           </widget>
           </item>
           <item row="3" column="5">
            <widget class="QLineEdit" name="txtSwitchPullOff"/>
@@ -305,6 +292,19 @@
             </property>
             <property name="text">
              <string>Enable Homing Cycle</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="labelSeekRate">
+            <property name="toolTip">
+             <string>Seek rate to quickly find the limit switch before the slower locating phase.</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>Search seek rate (mm/min)</string>
             </property>
            </widget>
           </item>
@@ -359,13 +359,13 @@
           <item row="1" column="0">
            <widget class="QLabel" name="labelMaxSpindle">
             <property name="toolTip">
-             <string>(RPM) Sets PWM to 100% duty cycle.</string>
+             <string>Sets PWM to 100% duty cycle.</string>
             </property>
             <property name="toolTipDuration">
              <number>0</number>
             </property>
             <property name="text">
-             <string>Max. spindle speed</string>
+             <string>Max. spindle speed (RPM)</string>
             </property>
            </widget>
           </item>
@@ -375,13 +375,13 @@
           <item row="1" column="2">
            <widget class="QLabel" name="labelMinSpindle">
             <property name="toolTip">
-             <string>(RPM) Sets PWM to 0.4% or lowest duty cycle.</string>
+             <string>Sets PWM to 0.4% or lowest duty cycle.</string>
             </property>
             <property name="toolTipDuration">
              <number>0</number>
             </property>
             <property name="text">
-             <string>Min. spindle speed</string>
+             <string>Min. spindle speed (RPM)</string>
             </property>
            </widget>
           </item>
@@ -726,7 +726,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>txtXStep</tabstop>
   <tabstop>txtYStep</tabstop>
   <tabstop>txtZStep</tabstop>
   <tabstop>txtXRate</tabstop>

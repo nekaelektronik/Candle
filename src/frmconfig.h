@@ -2,6 +2,7 @@
 #define FRMCONFIG_H
 
 #include <QDialog>
+#include <QDoubleValidator>
 
 namespace Ui {
 class frmConfig;
@@ -203,6 +204,9 @@ private:
     QString step_pulse_inv_new;
     QString step_dir_inv_new;
     QString home_inv_new;
+
+    QDoubleValidator m_doubleValidator;
+    QRegExpValidator m_regExpValidator;
 
 private slots:
     void test(int state);

@@ -13,6 +13,39 @@ frmConfig::frmConfig(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->cbHomingCycle, SIGNAL(stateChanged(int)), this, SLOT(test(int)));
+
+    QRegExp rx("\\d{0,5}\\.\\d{1,3}");
+    m_regExpValidator.setRegExp(rx);
+
+    ui->txtStepPulse->setValidator(new QIntValidator(3, 255, this));
+    ui->txtStepIdle->setValidator(new QIntValidator(0, 255, this));
+    ui->txtSwitchDebounce->setValidator(new QIntValidator(0, 255, this));
+
+    ui->txtMaxSpindle->setValidator(new QIntValidator(0, 300000, this));
+    ui->txtMinSpindle->setValidator(new QIntValidator(0, 300000, this));
+
+    ui->txtLocateFeed->setValidator(&m_regExpValidator);
+    ui->txtSearchSeek->setValidator(&m_regExpValidator);
+    ui->txtSwitchPullOff->setValidator(&m_regExpValidator);
+
+    ui->txtJunc->setValidator(&m_regExpValidator);
+    ui->txtArc->setValidator(&m_regExpValidator);
+
+    ui->txtXStep->setValidator(&m_regExpValidator);
+    ui->txtYStep->setValidator(&m_regExpValidator);
+    ui->txtZStep->setValidator(&m_regExpValidator);
+
+    ui->txtXRate->setValidator(&m_regExpValidator);
+    ui->txtYRate->setValidator(&m_regExpValidator);
+    ui->txtZRate->setValidator(&m_regExpValidator);
+
+    ui->txtXAccel->setValidator(&m_regExpValidator);
+    ui->txtYAccel->setValidator(&m_regExpValidator);
+    ui->txtZAccel->setValidator(&m_regExpValidator);
+
+    ui->txtXMaxTrav->setValidator(&m_regExpValidator);
+    ui->txtYMaxTrav->setValidator(&m_regExpValidator);
+    ui->txtZMaxTrav->setValidator(&m_regExpValidator);
 }
 
 frmConfig::~frmConfig()
@@ -336,6 +369,8 @@ QString frmConfig::getLaserMode(){
 }
 
 QString frmConfig::getXStep(){
+    if (!ui->txtXStep->hasAcceptableInput())
+        qDebug() << "Not acceptable";
     return ui->txtXStep->text();
 }
 
@@ -402,8 +437,6 @@ bool frmConfig::isStepPulseInvChanged(){
         step_pulse_inv = step_pulse_inv + 4;
 
     this->step_pulse_inv_new = QString::number(step_pulse_inv);
-
-    qDebug() << "Step pulse: " << this->step_pulse_inv_new;
 
     return this->step_pulse_inv_new != this->step_pulse_inv;
 }
