@@ -844,7 +844,7 @@ void frmMain::onSerialPortReadyRead()
 {
     while (m_serialPort.canReadLine()) {
         if (!m_configCommands.isEmpty()){
-            sendCommand(m_configCommands.takeFirst(), -1, true);
+            sendCommand(m_configCommands.takeFirst(), -1, m_settings->showUICommands());
         }
 
         if (m_configLoad.isEmpty())
