@@ -1,3 +1,9 @@
+// Added to Candle by Ne-Ka Elektronik
+// www.ne-ka.com.tr
+
+// This file is a part of "Candle" application.
+// Copyright 2015-2016 Hayrullin Denis Ravilevich
+
 #ifndef FRMCONFIG_H
 #define FRMCONFIG_H
 
